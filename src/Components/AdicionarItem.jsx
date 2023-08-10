@@ -1,28 +1,23 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
- 
 
 
-export default function Cadastro() {
+export default function AdicionarIten() {
     return(
         <Container>
     <CadastroContainer>
-    <p>Cadastro</p>
+    <p>Adicionar</p>
     </CadastroContainer>
  
     <FormContainer>
-      <input type="email" placeholder="e-mail"  />
-      <input type="password" placeholder="senha"  />
-      <input type="text" placeholder='nome' />
-      <input type="string" placeholder='cpf'  />
-      <input type="string" placeholder='telefone' />
-     <Link to="/inicio" style={{paddingLeft: 13, textDecoration: 'none'}}><button type="submit" >Cadastrar</button></Link>
+      <input type="text" placeholder="Nome"  />
+      <input type="url" placeholder="Url da imagem"  />
+      <input type="text" placeholder='Descrição' />
+      <input type="text" placeholder='Categoria'  />
+      <input type="text" placeholder='Valor' />
+   <Link to="/inicio" style={{paddingLeft: 13, textDecoration: 'none'}}>  <button type="submit" >Adicionar</button> </Link>
     </FormContainer>
-    
-      
-   <Link to="/" style={{textDecoration: 'none', marginTop: '7px', color: '#52B6FF'}} >Já tem uma conta? Faça login!</Link>
-
    
   </Container> 
     )
@@ -62,6 +57,8 @@ height: 45px;
 border: 1px solid #D5D5D5;
 border-radius: 5px;
 font-size: 19px;
+
+
   }
 
   button {
@@ -77,9 +74,23 @@ font-weight: 400;
 font-size: 20px;
 color: white;
 cursor: pointer;
+letter-spacing: 1px;
   }
 
   button:hover {
     background: blue;
 }
 `;
+
+const SignupLink = styled.p`
+  margin-top: 20px;
+
+
+    color: #52B6FF;
+    font-family: 'Lexend Deca';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+text-decoration: none; 
+cursor: pointer;
+`; 
