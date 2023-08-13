@@ -1,24 +1,62 @@
- import styled from "styled-components"
+import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import apiAuth from "../services/apiAuth"
 
 
 export default function TelaLogin() {
-    return (
-        <Container>
-            <LogoContainer>
-               <p>MeCansei!</p>
-            </LogoContainer>
+  const [form, setForm] = useState({ email: "", senha: "" })
+  const navigate = useNavigate()
 
-            <FormContainer>
-                <input type="email" placeholder="e-mail" />
-                <input type="password" placeholder="senha"  />
-             <Link to="/inicio" style={{paddingLeft: 13, textDecoration: 'none'}}> <button type="submit">Entrar</button> </Link>
-            </FormContainer>
-            <SignupLink to="/cadastro" style={{paddingLeft: 13, textDecoration: 'none'}}>
-                Não tem uma conta? Cadastre-se!
-            </SignupLink>
-        </Container>
-    )
+  function handleForm(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  function handleLogin(e) {
+    e.preventDefault()
+    setIsLoading(true)
+
+    apiAuth.login(form)
+      .then(res => {
+        console.log(res.data)
+        navigate("/inicio")
+      })
+      .catch(err => {
+        setIsLoading(false)
+        console.log(err)
+      })
+  }
+
+
+  return (
+    <Container>
+      <LogoContainer>
+        <p>MeCansei!</p>
+      </LogoContainer>
+
+      <FormContainer onSubmit={handleLogin}>
+        <input
+          name="email"
+          type="email"
+          placeholder="e-mail"
+          required
+          value={form.email}
+          onChange={handleForm} />
+        <input
+          name="senha"
+          type="password"
+          placeholder="senha"
+          value={form.senha}
+          required
+          onChange={handleForm} />
+        <button type="submit" >Entrar</button>
+      </FormContainer>
+      <SignupLink to="/cadastro" style={{ paddingLeft: 13, textDecoration: 'none' }}>
+        Não tem uma conta? Cadastre-se!
+      </SignupLink>
+    </Container>
+  )
 }
 
 const Container = styled.div`

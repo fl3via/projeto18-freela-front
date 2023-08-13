@@ -4,21 +4,20 @@ import { Link } from "react-router-dom"
 export default function DetalhesDoProduto() {
     return (
       <Container>
-        <h1>Detalhes do produto</h1>
+        <h1>Informações</h1>
         <ProductCardContainer>
           <img src="./src/assets/foto.png"  />
           <ProductName>Nome do Produto</ProductName>
+          <p>Categoria: </p>
           <ProductDescription>Descrição do Produto</ProductDescription>
-         <Link to="/inicio" style={{paddingLeft: 13, textDecoration: 'none'}}> <BackButton>Voltar</BackButton> </Link>
+         <p>Pedro Tel.9 5555-5555 pedro@gmail.com</p>
         </ProductCardContainer>
+        <Link to="/inicio" style={{paddingLeft: 13, textDecoration: 'none'}}> <BackButton><p>Voltar</p></BackButton> </Link>
       </Container>
     )
   }
   
- 
-
-
-const Container = styled.div`
+ const Container = styled.div`
 h1 {
     color: #52B6FF;
 }
@@ -63,13 +62,15 @@ const ProductDescription = styled.p`
 const BackButton = styled.div `
 background-color: #52B6FF;
 color: #fff;
-width: 100px;
-height: 30px;
+width: 150px;
+height: 50px;
 display: flex;
 justify-content: center;
 align-items: center; 
 border-radius: 3px;
-font-size: 17px;
+font-size: 22px;
 font-weight: bold;
 letter-spacing: 1px;
+
 `; 
+

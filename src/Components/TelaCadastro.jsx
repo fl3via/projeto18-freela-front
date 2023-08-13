@@ -1,31 +1,85 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import apiAuth from "../services/apiAuth"
 
- 
+
 
 
 export default function Cadastro() {
-    return(
-        <Container>
-    <CadastroContainer>
-    <p>Cadastro</p>
-    </CadastroContainer>
- 
-    <FormContainer>
-      <input type="email" placeholder="e-mail"  />
-      <input type="password" placeholder="senha"  />
-      <input type="text" placeholder='nome' />
-      <input type="string" placeholder='cpf'  />
-      <input type="string" placeholder='telefone' />
-     <Link to="/inicio" style={{paddingLeft: 13, textDecoration: 'none'}}><button type="submit" >Cadastrar</button></Link>
-    </FormContainer>
-    
-      
-   <Link to="/" style={{textDecoration: 'none', marginTop: '7px', color: '#52B6FF'}} >Já tem uma conta? Faça login!</Link>
+  const [form, setForm] = useState({ email: "", senha: "" , cpf: "", nome: "", telefone: ""})
+  const navigate = useNavigate()
 
+  function handleForm(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  function cadastro(e) {
+    e.preventDefault()
    
-  </Container> 
-    )
+    apiAuth.cadastro(form)
+      .then(res => {
+        console.log(res.data)
+        navigate("/")
+      })
+      .catch(err => {
+        setIsLoading(false)
+        console.log(err.response.data)
+      })
+  }
+
+  return (
+    <Container>
+      <CadastroContainer>
+        <p>Cadastro</p>
+      </CadastroContainer>
+
+      <FormContainer onSubmit={cadastro}>
+        <input
+          type="email"
+          placeholder="e-mail"
+          name="email"
+          required
+          value={form.email} 
+          onChange={handleForm}/>
+        <input
+          type="password"
+          placeholder="senha"
+          name="senha"
+          required
+          value={form.senha} 
+          onChange={handleForm}/>
+        <input
+          type="text"
+          placeholder='nome'
+          name="nome"
+          required
+          value={form.nome}
+          onChange={handleForm} />
+        <input
+          type="string"
+          placeholder='cpf'
+          name="cpf"
+          required
+          value={form.cpf} 
+          onChange={handleForm}/>
+        <input 
+        type="number" 
+        placeholder='telefone'
+        name="telefone"
+       required
+       value={form.telefone} 
+       onChange={handleForm}/>
+       <button type="submit" >Cadastrar</button>
+      </FormContainer>
+
+
+      <Link to="/" style={{ textDecoration: 'none', marginTop: '7px', color: '#52B6FF' }} >Já tem uma conta? Faça login!</Link>
+
+
+    </Container>
+  )
 }
 
 const Container = styled.div`

@@ -15,9 +15,6 @@ export default function TelaInicial() {
       </ProductCardContainer>
       </Link>
      <Footer> <Link to="/inicio" style={{  color: '#52B6FF', textDecoration: 'none'}}><p>Tela Inicial</p></Link> <Link to="/gerenciamento" style={{paddingLeft: 13, textDecoration: 'none', color: '#52B6FF',}}><p>Gerenciar </p></Link>  <Link to="/adicionar" style={{paddingLeft: 13, textDecoration: 'none', color: '#52B6FF',}}><p>Adicionar</p> </Link>   </Footer> 
-    
-    
-      
     </Container>
     
     )
